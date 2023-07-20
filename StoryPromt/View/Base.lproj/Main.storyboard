@@ -149,7 +149,7 @@
                         <outlet property="numberSlider" destination="tyc-bg-oCI" id="MX8-sX-aRB"/>
                         <outlet property="storyPromptImageView" destination="Z40-gh-TPk" id="WIH-UN-3bK"/>
                         <outlet property="verbTextField" destination="QN2-qk-cP0" id="Snl-ki-Jam"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="resultSegue" id="bBj-3h-Ltj"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="resultSegue" id="bBj-3h-Ltj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Y-Cx-TQd" sceneMemberID="firstResponder"/>
@@ -165,31 +165,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LE9-TM-RyI">
-                                <rect key="frame" x="20" y="101" width="374" height="36.5"/>
+                                <rect key="frame" x="20" y="149" width="374" height="36.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDc-Xw-3Yk">
-                                <rect key="frame" x="20" y="187.5" width="374" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Regenerate Story Prompt"/>
-                                <connections>
-                                    <action selector="returnButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TdF-dg-DO4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0" green="0.89411764705882346" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="SDc-Xw-3Yk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5Sa-oZ-6Bp"/>
                             <constraint firstItem="LE9-TM-RyI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="7bt-1B-QHZ"/>
                             <constraint firstItem="LE9-TM-RyI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="a8z-NY-Lde"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SDc-Xw-3Yk" secondAttribute="trailing" constant="20" id="c0y-gz-HXw"/>
-                            <constraint firstItem="SDc-Xw-3Yk" firstAttribute="top" secondItem="LE9-TM-RyI" secondAttribute="bottom" constant="50" id="dLB-nY-tMZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LE9-TM-RyI" secondAttribute="trailing" constant="20" id="qkv-b6-u7v"/>
                         </constraints>
                     </view>
@@ -197,9 +184,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="resultTextView" destination="LE9-TM-RyI" id="PUg-Jm-nNU"/>
+                        <segue destination="jbH-no-2bo" kind="unwind" identifier="CancelStoryPrompt" unwindAction="cancelButtonPressedWithUnwindSegue:" id="QMA-TY-Eiy"/>
+                        <segue destination="jbH-no-2bo" kind="unwind" identifier="SaveButtonPressed" unwindAction="saveStoryPromptWithUnwindSegue:" id="Mmj-8G-Rql"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="jbH-no-2bo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1095.6521739130435" y="-25.446428571428569"/>
         </scene>
@@ -235,6 +225,14 @@
                             <outlet property="delegate" destination="ooJ-5L-wa7" id="Edp-vG-z9a"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="PRo-Zt-G5N">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="N6H-O1-eFd">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="Kx5-Ma-5t1" kind="show" id="CXd-MV-2qa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="ShowStoryPrompt" id="eSt-at-eIh"/>
                     </connections>
@@ -255,7 +253,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Kx5-Ma-5t1" kind="relationship" relationship="rootViewController" id="ZMg-On-RwE"/>
+                        <segue destination="ooJ-5L-wa7" kind="relationship" relationship="rootViewController" id="IFb-vS-cQr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ad-bO-D0u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -264,7 +262,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bBj-3h-Ltj"/>
+        <segue reference="eSt-at-eIh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="10.circle" catalog="system" width="128" height="123"/>

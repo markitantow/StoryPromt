@@ -68,6 +68,7 @@ class PromptEditingViewController: UIViewController {
                 return
             }
             destinationVC.resultStoryPrompt = storyPrompt
+            destinationVC.isNewStoryPrompt = true
         }
     }
 }

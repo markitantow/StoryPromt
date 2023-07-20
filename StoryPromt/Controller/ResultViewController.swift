@@ -4,12 +4,12 @@ import UIKit
 class ResultViewController: UIViewController {
     @IBOutlet var resultTextView: UITextView!
     
-    var resultStoryPrompt: StoryPromtEntry?
     var isNewStoryPrompt = false
+    var resultPromptText: String?
+    var resultImage: UIImage?
     
     override func viewDidLoad() {
-        
-        resultTextView.text = resultStoryPrompt?.description
+        resultTextView.text = resultPromptText
         if isNewStoryPrompt {
             let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveStoryPrompt))
             let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
@@ -25,6 +25,4 @@ class ResultViewController: UIViewController {
     @objc func saveStoryPrompt() {
         performSegue(withIdentifier: "SaveButtonPressed", sender: nil)
     }
-    
-    
 }

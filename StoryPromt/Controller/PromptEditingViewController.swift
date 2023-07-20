@@ -67,8 +67,9 @@ class PromptEditingViewController: UIViewController {
             guard let destinationVC = segue.destination as? ResultViewController else {
                 return
             }
-            destinationVC.resultStoryPrompt = storyPrompt
+            destinationVC.resultPromptText = storyPrompt.description
             destinationVC.isNewStoryPrompt = true
+            destinationVC.resultImage = storyPrompt.image
         }
     }
 }
@@ -99,6 +100,7 @@ extension PromptEditingViewController: PHPickerViewControllerDelegate {
                         
                 DispatchQueue.main.async {
                     self?.storyPromptImageView.image = image
+                    self?.storyPrompt.image = image
                 }
             }
         }
